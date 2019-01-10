@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"DemineurConsole","l":"Main"},{"p":"DemineurConsole","l":"Plateau"}]

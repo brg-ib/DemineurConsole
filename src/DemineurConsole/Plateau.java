@@ -1,27 +1,63 @@
 package DemineurConsole;
 
+/**
+ * Le démineur console en JAVA 
+ * @author Ihcen Borgi - Brahim Mlaghui
+ * @version 1.0
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.lang.*;
 
-class Plateau {
+public class Plateau {
 
   private int lin, col;
   public static Scanner scanner;
   static long chrono = 0;
   
-  public boolean gameOver; // Si le jeu est terminé
-  private boolean firstTime; // Si c'est la premiere fois qu'on ouvre une case
-  
-  private int prox[][]; // Nombre de bombes autour
-  private boolean[][] open; // Si la case est ouverte
-  private boolean[][] flag; // Si la case contient un drapeau
-  private boolean[][] bombe; // Si la case contient une bombe
-  
-  private int nrOpen; // Nombre de cases ouvertes
-  private int nrbombe; // Nombre de bombes
+  /*
+   * Si le jeu est terminé
+   */
+  public boolean gameOver; 
+  /*
+   * Si c'est la premiere fois qu'on ouvre une case
+   */
+  private boolean firstTime; 
+  /*
+   * Nombre de bombes autour
+   */
+  private int prox[][];
+  /*
+  * Si la case est ouverte
+  */
+  private boolean[][] open;  
+  /*
+   * Si la case contient un drapeau
+   */
+  private boolean[][] flag; 
+  /*
+   *  Si la case contient une bombe
+   */
+  private boolean[][] bombe;
+  /*
+   * Nombre de cases ouvertes
+   */
+  private int nrOpen;
+  /*
+   * Nombre de bombes
+   */
+  private int nrbombe; 
 
+  /**
+   * Constructeur Plateau
+   * Permet d'initialiser le plateau du jeu à l'état par defaut
+   * @param lin
+   * @param col
+   * @param nrbombe
+   * @return
+   */
   public Plateau(int lin, int col, int nrbombe) {
     this.lin = lin;
     this.col = col;
@@ -48,8 +84,12 @@ class Plateau {
       bombe[0][j] = bombe[lin + 1][j] = false;
   }
 
-  // Methode qui genere les bombes
-  // Ne pas mettre de bombe dans la cellule (x, y):
+  /**
+   * Methode qui genere les bombes
+   * Ne pas mettre de bombes dans la cellule (x,y) 
+   * @param x
+   * @param y
+   */
   public void generate(int x, int y) {
     ArrayList<Cell> cells = new ArrayList<>();
     for (int i = 1; i <= lin; i++)
@@ -57,16 +97,23 @@ class Plateau {
         if (!(i == x && j == y))
           cells.add(new Cell(i, j));
     
-    // Placement aléatoire de nrbombe:
+    /**
+     * Placement aléatoire de nrbombe
+     */
     Collections.shuffle(cells);
     for (int i = 0; i < nrbombe; i++)
       bombe[cells.get(i).x][cells.get(i).y] = true;
     
-    // Arrays pour les mouvements:
+    /**
+     *  Arrays pour les mouvements
+     *  On considere 8 voisins
+     */
     int addLin[] = {-1, -1, 0, 1, 1,  1,  0, -1};
     int addCol[] = { 0,  1, 1, 1, 0, -1, -1, -1};
     
-    // Generation de la matrice des bombes à proximité:
+    /**
+     *  Generation de la matrice des bombes à proximité
+     */
     for (int i = 1; i <= lin; i++)
       for (int j = 1; j <= col; j++) {
         prox[i][j] = 0;
@@ -76,6 +123,10 @@ class Plateau {
       }
   }
   
+  /**
+   * Affiche le nouveau plateau actualisé
+   * @param
+   */
   public void print() {
     System.out.println();
     for (int i = 1; i <= lin; i++) {
@@ -105,7 +156,18 @@ class Plateau {
     //redo();
     //save();
     }
+  
 
+  /**
+   * Actualise le nouveau plateau avec les nouveaux parametres...
+   * @param	l
+   * @param c
+   * @param flag[][]
+   * @param open[][]
+   * @param bombe[][]
+   * @param prox[][]
+   * @return 
+   */
   public Plateau(int l, int c, boolean flag[][], boolean open[][],boolean bombe[][], int prox[][]) {
 	 this.lin = l;
 	 this.col = c;
@@ -116,6 +178,13 @@ class Plateau {
 	 print();
   }
   
+  
+  /**
+   * Debut de la création de la mathode save()
+   * Permet de sauvegarder la partie en cours
+   * ATTENTION : Methode non fonctionnel pour le moment
+   * @param 
+   */
   public void save() {
 	 // Plateau(l,c, flag[][], open[][], bombe[][], prox[][]);
   }
@@ -127,6 +196,13 @@ class Plateau {
 	    System.out.print("Temps écoulé: "+ chrono +"ms1");     
   }*/
   
+  
+  /**
+   * Permet d'ouvrir/flag/unflag une case passée en parametre
+   * Si le parametre de la case saisi depasse le tableau alors une erreur est affichée.
+   * Si une case est déjà ouverte, une erreur est affichée.
+   * @param
+   */
   public void place() {
     int x = scanner.nextInt();
     int y = scanner.nextInt();
@@ -160,6 +236,10 @@ class Plateau {
       flag[x][y] ^= true;
   }
   
+  /**
+   * Verifie si le jeu est terminé.
+   * @param win
+   */
   public void finJeu(boolean win) {
     gameOver = true;
     if (win)
@@ -172,9 +252,17 @@ class Plateau {
     }
   }
   
+
+  
   private class Cell {
     int x, y;
 
+    /**
+     * Determine les coordonnees d'une cellule
+     * @param x
+     * @param y
+     * @return 
+     */
     public Cell(int x, int y) {
       this.x = x;
       this.y = y;

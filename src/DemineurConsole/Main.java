@@ -1,26 +1,34 @@
+
 package DemineurConsole;
 
+/**
+ * Le démineur console en JAVA 
+ * @author Ihcen Borgi - Brahim Mlaghui
+ * @version 1.0
+ */
 import java.util.*;
 
-class Main {
+public class Main {
 
+	/**
+	 * Methode Main principale
+	 * @param args
+	 */
   public static void main(String[] args){
-  		System.out.println("*********************");
-		System.out.println("*     Bienvenue     *");
-		System.out.println("*    au Demineur    *");
-		System.out.println("*Par Ihcen & Brahim *");
-		System.out.println("*********************");
-		System.out.println();
-
+  		System.out.println("*********************\n"
+  				+ "*     Bienvenue     *\n"
+  				+ "*    au demineur    *\n"
+  				+ "*Par Ihcen & Brahim *\n"
+  				+ "*********************");
 		Plateau.scanner = new Scanner(System.in);
 		int entree;
 		do {
-			System.out.println("[1] Nouvelle Partie");
-		    System.out.println("[2] Charger une partie");
-			System.out.println("[3] Aide");
-			System.out.println("[4] A propos");
-			System.out.println("[5] Quitter");
-			System.out.print("Votre choix: ");
+			System.out.print("[1] Nouvelle Partie\n"
+					+ "[2] Charger une partie\n"
+					+ "[3] Aide\n"
+					+ "[4] A propos\n"
+					+ "[5] Quitter\n"
+					+ "Votre choix: ");
 			
 			entree = Plateau.scanner.nextInt();			
 			
@@ -61,7 +69,10 @@ class Main {
 	}
 
 
-private static void lancerJeu() {
+  /**
+   * Lancement du jeu grace à la methode lancerJeu()
+   */
+  private static void lancerJeu() {
 		int b, l, c;
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
