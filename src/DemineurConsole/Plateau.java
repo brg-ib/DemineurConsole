@@ -97,10 +97,11 @@ class Plateau {
       System.out.println();
     }
 //     chrono();
-    System.out.println("Menu");
-    System.out.println("Undo/Redo");
-    System.out.println("Sauvegarder");
-    System.out.println("Importer");
+    System.out.print("[1] - Menu\n"
+    		+ "[2] - Undo/Redo\n"
+    		+ "[3] - Sauvegarder\n"
+    		+ "[4] - Importer\n"
+    		+ "Votre choix: ");
     //redo();
     //save();
     }
@@ -132,7 +133,7 @@ class Plateau {
     int type = scanner.nextInt();
     
     if (!(1 <= x && x <= lin && 1 <= y && y <= col) || !(type == 1 || type == 2)) {
-      System.out.println("Erreur de placement!");
+      System.out.println("Erreur de placement / saisie.");
       return;
     }
 
