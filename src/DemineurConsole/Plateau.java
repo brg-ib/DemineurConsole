@@ -148,13 +148,11 @@ public class Plateau {
       System.out.println();
     }
 //     chrono();
-    System.out.print("[1] - Menu\n"
-    		+ "[2] - Undo/Redo\n"
-    		+ "[3] - Sauvegarder\n"
-    		+ "[4] - Importer\n"
+    System.out.print("[0] - Mode Triche\n"
     		+ "Votre choix: ");
     //redo();
     //save();
+    // triche();
     }
   
 
@@ -196,19 +194,39 @@ public class Plateau {
 	    System.out.print("Temps écoulé: "+ chrono +"ms1");     
   }*/
   
+  /**
+   * Affiche les bombes de la grille
+   * Si true alors une bombe se cache derriere
+   * @param 
+   */
+  public void triche() {
+	  System.out.println("Mode triche activé");
+	  for (int i = 1; i <= lin; i++) {
+	        for (int j = 1; j <= col; j++) {
+	        	System.out.print(" "+bombe[i][j]+" ") ;
+	        }
+	        System.out.println();
+	  }
+  }
   
   /**
    * Permet d'ouvrir/flag/unflag une case passée en parametre
    * Si le parametre de la case saisi depasse le tableau alors une erreur est affichée.
    * Si une case est déjà ouverte, une erreur est affichée.
+   * args[0] = x ; args[1] = y ; args[2] = 1 pour ouvrir / 2 pour flag, 0 pour activer
+   * le mode triche.
    * @param
    */
   public void place() {
-    int x = scanner.nextInt();
+	  
+	int x = scanner.nextInt();
     int y = scanner.nextInt();
     int type = scanner.nextInt();
     
-    if (!(1 <= x && x <= lin && 1 <= y && y <= col) || !(type == 1 || type == 2)) {
+	if (type == 0)
+		triche();
+    
+	if (!(1 <= x && x <= lin && 1 <= y && y <= col) || !(type == 1 || type == 2)) {
       System.out.println("Erreur de placement / saisie.");
       return;
     }
