@@ -148,7 +148,10 @@ public class Plateau {
       System.out.println();
     }
 //     chrono();
-    System.out.print("[0] - Mode Triche\n"
+    System.out.print("******Aide**********\n"
+    		+ "args[0] - Coordonnee de la ligne\n"
+    		+ "args[1] - Coordonnee de la colonne\n"
+    		+ "args[2] = 1 pour ouvrir / 2 pour flag/unflag, 0 pour activer le mode triche\n"
     		+ "Votre choix: ");
     //redo();
     //save();
