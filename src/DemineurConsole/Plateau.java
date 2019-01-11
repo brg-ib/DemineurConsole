@@ -203,10 +203,10 @@ public class Plateau {
    * @param 
    */
   public void triche() {
-	  System.out.println("Mode triche activé");
+	  System.out.println("Solution de la grille: ");
 	  for (int i = 1; i <= lin; i++) {
 	        for (int j = 1; j <= col; j++) {
-	        	System.out.print(" "+bombe[i][j]+" ") ;
+	        	System.out.print(bombe[i][j]+" ") ;
 	        }
 	        System.out.println();
 	  }
@@ -221,7 +221,6 @@ public class Plateau {
    * @param
    */
   public void place() {
-	  
 	int x = scanner.nextInt();
     int y = scanner.nextInt();
     int type = scanner.nextInt();
